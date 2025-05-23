@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors AI</title>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Rock Paper Scissors AI</h1>
+    </header>
+
+    <div class="container">
+        <div class="section instructions">
+            <h2>How to Play</h2>
+            <ol>
+                <li>Choose your move by clicking Rock, Paper, or Scissors</li>
+                <li>The AI will predict your move using advanced pattern recognition</li>
+                <li>Watch as the AI learns from your playing style over time</li>
+                <li>Try to outsmart the AI and maintain a high win rate</li>
+                <li>The longer you play, the better the AI becomes at predicting you</li>
+            </ol>
+        </div>
+
+        <div class="section game-controls">
+            <h3>Make Your Move</h3>
+            <div class="choices">
+                <button class="choice" data-choice="r">✊</button>
+                <button class="choice" data-choice="p">✋</button>
+                <button class="choice" data-choice="s">✌️</button>
+            </div>
+
+            <div id="moves-display" class="moves-display hidden">
+                <div class="move">
+                    <div id="player-move" class="move-emoji"></div>
+                    <div class="move-label">You</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="move">
+                    <div id="ai-move" class="move-emoji"></div>
+                    <div class="move-label">AI</div>
+                </div>
+            </div>
+
+            <div class="result">
+                <div id="result-text" class="result-text"></div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div id="wins" class="stat-value">0</div>
+                    <div class="stat-label">Wins</div>
+                </div>
+                <div class="stat">
+                    <div id="losses" class="stat-value">0</div>
+                    <div class="stat-label">Losses</div>
+                </div>
+                <div class="stat">
+                    <div id="draws" class="stat-value">0</div>
+                    <div class="stat-label">Draws</div>
+                </div>
+                <div class="stat">
+                    <div id="win-rate" class="stat-value">0%</div>
+                    <div class="stat-label">Win Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

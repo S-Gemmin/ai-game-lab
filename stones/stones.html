@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone Removal Game</title>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Stone Removal Game</h1>
+    </header>
+
+    <div class="container">
+        <div class="section instructions">
+            <h2>How to Play</h2>
+            <p>1. Choose the number of stones and allowed moves to remove per turn</p>
+            <p>2. Take turns with the AI removing stones from the pile</p>
+            <p>3. You can only remove the number of stones from your allowed set</p>
+            <p>4. The player who cannot make a move (when pile is empty) loses</p>
+        </div>
+
+        <div id="setup-section" class="section">
+            <h2>Game Setup</h2>
+            <div class="setup-row">
+                <label for="stone-count">Number of stones:</label>
+                <input type="number" id="stone-count" min="1" max="50" value="21">
+            </div>
+            <div class="setup-row">
+                <label for="allowed-moves">Allowed moves (comma separated):</label>
+                <input type="text" id="allowed-moves" value="1,2,3" placeholder="e.g., 1,2,3">
+            </div>
+            <div class="controls-grid">
+                <button id="start-game-btn">Start Game</button>
+            </div>
+        </div>
+
+        <div id="game-section" class="section hidden">
+            <div class="stone-counter" id="stone-counter">Stones: 0</div>
+            <div class="stone-pile" id="stone-pile"></div>
+            
+            <div id="game-status" class="game-status">Ready to play!</div>
+            
+            <div id="last-move" class="last-move hidden">
+                <span id="last-move-text">No moves yet</span>
+            </div>
+            
+            <div id="coin-toss-section">
+                <div class="controls-grid">
+                    <button id="coin-toss-btn">Flip Coin (Who Goes First)</button>
+                </div>
+            </div>
+
+            <div id="player-turn" class="hidden">
+                <div class="player-controls">
+                    <label for="move-select">Remove stones:</label>
+                    <select id="move-select"></select>
+                    <button id="make-move-btn">Make Move</button>
+                </div>
+            </div>
+
+            <div class="controls-grid">
+                <button id="new-game-btn">New Game</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

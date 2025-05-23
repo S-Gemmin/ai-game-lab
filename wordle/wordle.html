@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Wordle</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Reverse Wordle</h1>
+    </header>
+
+    <div class="container">
+        <div class="section instructions">
+            <h2>How to Play</h2>
+            <ol>
+                <li>Think of any 5-letter English word in <a href="https://github.com/S-Gemmin/valid-words/tree/main" class="primary-link">words</a></li>
+                <li>I'll make a guess and show it on the board</li>
+                <li>Click each letter to mark it with the correct color</li>
+                <li>Click "Submit Feedback" when done, and I'll make my next guess!</li>
+            </ol>
+            
+            <div class="color-guide">
+                <div class="color-item">
+                    <div class="color-sample correct"></div>
+                    <span>Green: Right letter, right spot</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-sample present"></div>
+                    <span>Yellow: Right letter, wrong spot</span>
+                </div>
+                <div class="color-item">
+                    <div class="color-sample absent"></div>
+                    <span>Gray: Letter not in word</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section game-controls">
+            <div class="board" id="board">
+                <!-- Game board will be generated here -->
+            </div>
+
+            <div class="controls">
+                <button class="button" id="startBtn">Start Game</button>
+                <button class="button" id="submitBtn" style="display: none;">Submit Feedback</button>
+                <button class="button secondary" id="aiInfoBtn" style="display: none;">Show AI Logic</button>
+            </div>
+
+            <div class="ai-info" id="aiInfo">
+                <h4>AI Reasoning</h4>
+                <p>I use information theory to pick the best guess. I calculate which word will give me the most information on average, helping me eliminate the most possibilities with each guess.</p>
+                <p id="aiStats"></p>
+            </div>
+
+            <div class="status" id="status">
+                Click "Start Game" to begin. Think of any 5-letter word!
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Game Over</h2>
+            <p id="modalText">Result text here</p>
+            <button class="button" id="newGameBtn">Play Again</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkers Game</title>
+    <script src="checkers.js"></script>
+    <link rel="stylesheet" href="checkers.css">
+</head>
+
+<body>
+    <header>
+        <h1>Checkers Game</h1>
+    </header>
+
+    <div class="container">
+        <div class="section instructions">
+            <h2>How to Play</h2>
+            <ol>
+                <li>Red player moves first</li>
+                <li>Click on a piece, then click on a valid square to move</li>
+                <li>Jump over opponent pieces to capture them</li>
+                <li>Reach the opposite end to become a king (♔)</li>
+                <li>Kings can move and capture backwards</li>
+                <li>Win by capturing all opponent pieces or blocking all their moves</li>
+            </ol>
+        </div>
+
+        <div class="section game-area">
+            <div class="game-info">
+                <div id="current-player" class="current-player">Red Player's Turn</div>
+                <div class="stats">
+                    <div class="stat">
+                        <div id="red-pieces" class="stat-value">12</div>
+                        <div class="stat-label">Red Pieces</div>
+                    </div>
+                    <div class="stat">
+                        <div id="black-pieces" class="stat-value">12</div>
+                        <div class="stat-label">Black Pieces</div>
+                    </div>
+                    <div class="stat">
+                        <div id="turn-count" class="stat-value">0</div>
+                        <div class="stat-label">Turn Count</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="board-container">
+                <div id="board" class="board"></div>
+            </div>
+
+            <div class="game-info">
+                <div class="controls">
+                    <button id="new-game" class="btn">New Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-over" class="game-over hidden">
+        <div class="game-over-content">
+            <h2 id="winner-text">Game Over!</h2>
+            <p id="winner-message">Red Wins!</p>
+            <button onclick="newGame()" class="btn">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
