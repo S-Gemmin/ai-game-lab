@@ -1,0 +1,51 @@
+:root {
+    --bg-color: #121213;
+    --text-color: #d7dadc;
+    --primary-color: #3B82F6;
+    --secondary-bg: #1a1a1b;
+    --hover-color: #2a2a2b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.back-button {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-button:hover {
+    background-color: var(--hover-color);
+}
+
+.back-icon {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 600px) {
+    .back-button {
+        left: 10px;
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+    
+    .global-title {
+        font-size: 28px;
+    }
+}

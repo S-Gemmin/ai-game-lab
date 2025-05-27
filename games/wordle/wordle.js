@@ -188,22 +188,20 @@ class ReverseWordle {
         const targetChars = target.split('');
         const guessChars = guess.split('');
 
-        // First pass: mark correct positions
         for (let i = 0; i < 5; i++) {
             if (guessChars[i] === targetChars[i]) {
                 result[i] = 'correct';
-                targetChars[i] = null; // Mark as used
-                guessChars[i] = null;  // Mark as used
+                targetChars[i] = null;
+                guessChars[i] = null; 
             }
         }
 
-        // Second pass: mark present letters
         for (let i = 0; i < 5; i++) {
             if (guessChars[i] !== null) {
                 const targetIndex = targetChars.indexOf(guessChars[i]);
                 if (targetIndex !== -1) {
                     result[i] = 'present';
-                    targetChars[targetIndex] = null; // Mark as used
+                    targetChars[targetIndex] = null;
                 }
             }
         }
@@ -231,13 +229,10 @@ class ReverseWordle {
         const nextIndex = (currentIndex + 1) % states.length;
         const nextState = states[nextIndex];
 
-        // Remove all state classes
         tile.classList.remove('correct', 'present', 'absent');
 
-        // Add new state class if not empty
-        if (nextState) {
+        if (nextState) 
             tile.classList.add(nextState);
-        }
 
         this.feedback[col] = nextState;
     }
@@ -245,19 +240,16 @@ class ReverseWordle {
     submitFeedback() {
         if (!this.gameActive) return;
 
-        // Check if all tiles are marked
         if (this.feedback.includes('')) {
             this.statusEl.textContent = 'Please mark all letters before submitting!';
             return;
         }
 
-        // Check if all correct (AI won)
         if (this.feedback.every(state => state === 'correct')) {
             this.endGame(true);
             return;
         }
 
-        // Filter possible words based on feedback
         this.filterWordsByFeedback();
 
         this.currentRow++;
@@ -319,7 +311,6 @@ class ReverseWordle {
     }
 }
 
-// Initialize the game when page loads
 document.addEventListener('DOMContentLoaded', () => {
     new ReverseWordle();
 });

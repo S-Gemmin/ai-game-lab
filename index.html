@@ -1,187 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Game Projects</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        header {
-            text-align: center;
-            padding: 3rem 2rem 2rem;
-            border-bottom: 1px solid #333;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #3B82F6;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #9ca3af;
-            font-weight: 400;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .intro h2 {
-            font-size: 1.5rem;
-            color: #f3f4f6;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .intro p {
-            font-size: 1rem;
-            color: #9ca3af;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background-color: #2d2d2d;
-            border: 1px solid #404040;
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            border-color: #3B82F6;
-            transform: translateY(-2px);
-        }
-
-        .project-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-icon {
-            font-size: 2rem;
-        }
-
-        .project-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #f3f4f6;
-        }
-
-        .project-subtitle {
-            font-size: 0.85rem;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.75rem;
-        }
-
-        .project-description {
-            color: #9ca3af;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .tag {
-            background-color: rgba(59, 130, 246, 0.1);
-            color: #93c5fd;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .play-button {
-            width: 100%;
-            background-color: #3B82F6;
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .play-button:hover {
-            background-color: #2563eb;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #333;
-            margin-top: 3rem;
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 2rem 1rem 1.5rem;
-            }
-            
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            .container {
-                padding: 1.5rem 1rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .project-card {
-                padding: 1.25rem;
-            }
-        }
-    </style>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="assets/global.css">
+    <link rel="icon" href="assets/icon.png" type="image/png">
 </head>
+
 <body>
     <header>
         <h1>AI Game Projects</h1>
@@ -191,82 +21,85 @@
     <div class="container">
         <div class="intro">
             <h2>Welcome to My AI Laboratory</h2>
-            <p>A collection of intelligent game projects showcasing different AI algorithms and techniques. Each game demonstrates unique approaches to artificial intelligence, from pattern recognition to strategic decision-making.</p>
+            <p>A collection of intelligent game projects showcasing different AI algorithms and techniques. Each game
+                demonstrates unique approaches to artificial intelligence, from pattern recognition to strategic
+                decision-making.</p>
         </div>
 
         <div class="projects-grid">
-            <div class="project-card" onclick="window.location.href='checkers.html'">
+            <div class="project-card" onclick="window.location.href='games/checkers/checkers.html'">
                 <div class="project-header">
-                    <div class="project-icon">⚫</div>
                     <div class="project-title">Checkers AI</div>
                 </div>
-                <div class="project-subtitle">Strategic AI</div>
+                <div class="project-subtitle">Adversial Search</div>
                 <p class="project-description">
-                    Advanced checkers AI using Alpha-Beta pruning algorithm for optimal move calculation. Experience strategic gameplay against an AI that thinks several moves ahead.
+                    Checkers AI using Alpha-Beta pruning algorithm for optimal move calculation. Experience
+                    strategic gameplay against an AI that thinks several moves ahead.
                 </p>
                 <div class="project-tags">
                     <span class="tag">Alpha-Beta Pruning</span>
                     <span class="tag">Minimax</span>
                     <span class="tag">Game Tree</span>
                 </div>
-                <button class="play-button">Play Checkers</button>
+                <button class="play-button">Play</button>
             </div>
 
-            <div class="project-card" onclick="window.location.href='rps.html'">
+            <div class="project-card" onclick="window.location.href='games/rps/rps.html'">
                 <div class="project-header">
-                    <div class="project-icon">✊</div>
                     <div class="project-title">Rock Paper Scissors AI</div>
                 </div>
-                <div class="project-subtitle">Pattern Recognition</div>
+                <div class="project-subtitle">Stochastic Analysis</div>
                 <p class="project-description">
-                    Intelligent RPS opponent using ensemble Markov chain prediction. The AI learns your patterns and adapts its strategy to maximize wins against human players.
+                    Intelligent RPS opponent using ensemble Markov chain prediction. The AI learns your patterns and
+                    adapts its strategy to maximize wins against human players.
                 </p>
                 <div class="project-tags">
                     <span class="tag">Markov Chains</span>
                     <span class="tag">Pattern Learning</span>
                     <span class="tag">Ensemble Methods</span>
                 </div>
-                <button class="play-button">Challenge AI</button>
+                <button class="play-button">Play</button>
             </div>
 
-            <div class="project-card" onclick="window.location.href='stones.html'">
+            <div class="project-card" onclick="window.location.href='games/stones/stones.html'">
                 <div class="project-header">
-                    <div class="project-icon">🗿</div>
                     <div class="project-title">Stone Game</div>
                 </div>
                 <div class="project-subtitle">Dynamic Programming</div>
                 <p class="project-description">
-                    Strategic stone collection game powered by Minimax algorithm with dynamic programming optimization. Compete against AI in this classic game theory scenario.
+                    Strategic stone collection game powered by Minimax algorithm with dynamic programming optimization.
+                    Compete against AI in this classic game theory scenario.
                 </p>
                 <div class="project-tags">
                     <span class="tag">Minimax</span>
                     <span class="tag">Dynamic Programming</span>
                     <span class="tag">Game Theory</span>
                 </div>
-                <button class="play-button">Play Stone Game</button>
+                <button class="play-button">Play</button>
             </div>
 
-            <div class="project-card" onclick="window.location.href='wordle.html'">
+            <div class="project-card" onclick="window.location.href='games/wordle/wordle.html'">
                 <div class="project-header">
-                    <div class="project-icon">🔤</div>
                     <div class="project-title">Reverse Wordle AI</div>
                 </div>
                 <div class="project-subtitle">Information Theory</div>
                 <p class="project-description">
-                    AI-powered Wordle solver that maximizes information entropy to find optimal guesses. Watch as the AI strategically narrows down possibilities with each guess.
+                    AI-powered Wordle solver that maximizes information entropy to find optimal guesses. Watch as the AI
+                    strategically narrows down possibilities with each guess.
                 </p>
                 <div class="project-tags">
                     <span class="tag">Entropy Maximization</span>
                     <span class="tag">Information Theory</span>
                     <span class="tag">Word Analysis</span>
                 </div>
-                <button class="play-button">Watch AI Solve</button>
+                <button class="play-button">Play</button>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-        <p>Built with passion for artificial intelligence and game theory</p>
+        <p>Built with passion for CS</p>
     </footer>
 </body>
+
 </html>

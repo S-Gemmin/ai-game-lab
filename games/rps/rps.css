@@ -1,17 +1,3 @@
-:root {
-    --bg-color: #121213;
-    --text-color: #d7dadc;
-    --primary-color: #3B82F6;
-    --secondary-bg: #1a1a1b;
-    --hover-color: #2a2a2b;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--bg-color);

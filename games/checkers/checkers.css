@@ -1,19 +1,10 @@
 :root {
-    --bg-color: #121213;
-    --text-color: #d7dadc;
-    --primary-color: #3B82F6;
     --secondary-bg: #1a1a1b;
     --hover-color: #2a2a2b;
     --red-piece: #dc2626;
     --black-piece: #1f2937;
     --light-square: #f3f4f6;
     --dark-square: #6b7280;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 body {

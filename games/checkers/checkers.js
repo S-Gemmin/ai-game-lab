@@ -21,26 +21,17 @@ class CheckersGame {
     }
 
     initializeBoard() {
-        // Initialize 8x8 board
         this.board = Array(8).fill().map(() => Array(8).fill(null));
 
-        // Place black pieces (top 3 rows, only on dark squares)
-        for (let row = 0; row < 3; row++) {
-            for (let col = 0; col < 8; col++) {
-                if ((row + col) % 2 === 1) {
+        for (let row = 0; row < 3; row++)
+            for (let col = 0; col < 8; col++)
+                if ((row + col) % 2 === 1)
                     this.board[row][col] = { color: 'black', king: false };
-                }
-            }
-        }
 
-        // Place red pieces (bottom 3 rows, only on dark squares)
-        for (let row = 5; row < 8; row++) {
-            for (let col = 0; col < 8; col++) {
-                if ((row + col) % 2 === 1) {
+        for (let row = 5; row < 8; row++)
+            for (let col = 0; col < 8; col++)
+                if ((row + col) % 2 === 1)
                     this.board[row][col] = { color: 'red', king: false };
-                }
-            }
-        }
     }
 
     renderBoard() {
@@ -67,12 +58,10 @@ class CheckersGame {
     }
 
     handleSquareClick(row, col) {
-        // Don't allow moves during AI turn
         if (this.isAITurn || this.aiThinking) return;
 
         const clickedPiece = this.board[row][col];
 
-        // If we're in the middle of a multi-jump, only allow continuing the jump
         if (this.jumpingPiece && (this.selectedSquare.row !== row || this.selectedSquare.col !== col)) {
             if (this.isValidMove(this.selectedSquare.row, this.selectedSquare.col, row, col)) {
                 this.makeMove(this.selectedSquare.row, this.selectedSquare.col, row, col);
@@ -80,20 +69,13 @@ class CheckersGame {
             }
         }
 
-        // Select a piece (only allow red pieces for player)
-        if (clickedPiece && clickedPiece.color === 'red' && !this.jumpingPiece) {
+        if (clickedPiece && clickedPiece.color === 'red' && !this.jumpingPiece)
             this.selectPiece(row, col);
-        }
-        // Move to empty square
-        else if (!clickedPiece && this.selectedPiece) {
-            if (this.isValidMove(this.selectedSquare.row, this.selectedSquare.col, row, col)) {
+        else if (!clickedPiece && this.selectedPiece)
+            if (this.isValidMove(this.selectedSquare.row, this.selectedSquare.col, row, col))
                 this.makeMove(this.selectedSquare.row, this.selectedSquare.col, row, col);
-            }
-        }
-        // Deselect if clicking elsewhere
-        else if (!this.jumpingPiece) {
-            this.deselectPiece();
-        }
+            else if (!this.jumpingPiece)
+                this.deselectPiece();
     }
 
     selectPiece(row, col) {
@@ -140,7 +122,6 @@ class CheckersGame {
             [[-1, -1], [-1, 1], [1, -1], [1, 1]] :
             piece.color === 'red' ? [[-1, -1], [-1, 1]] : [[1, -1], [1, 1]];
 
-        // Check for jumps first (mandatory)
         const jumps = [];
         directions.forEach(([dRow, dCol]) => {
             const jumpRow = row + dRow * 2;
@@ -151,19 +132,14 @@ class CheckersGame {
             }
         });
 
-        // If jumps are available, only return jumps
-        if (jumps.length > 0) {
-            return jumps;
-        }
+        if (jumps.length > 0) return jumps;
 
-        // Otherwise, check regular moves
         directions.forEach(([dRow, dCol]) => {
             const newRow = row + dRow;
             const newCol = col + dCol;
 
-            if (this.isValidPosition(newRow, newCol) && !this.board[newRow][newCol]) {
+            if (this.isValidPosition(newRow, newCol) && !this.board[newRow][newCol])
                 moves.push({ row: newRow, col: newCol, isJump: false });
-            }
         });
 
         return moves;
@@ -193,11 +169,9 @@ class CheckersGame {
         const piece = this.board[fromRow][fromCol];
         const isJump = Math.abs(toRow - fromRow) === 2;
 
-        // Move piece
         this.board[toRow][toCol] = piece;
         this.board[fromRow][fromCol] = null;
 
-        // Handle jump
         if (isJump) {
             const midRow = fromRow + (toRow - fromRow) / 2;
             const midCol = fromCol + (toCol - fromCol) / 2;
@@ -205,39 +179,34 @@ class CheckersGame {
 
             this.board[midRow][midCol] = null;
 
-            if (capturedPiece.color === 'red') {
+            if (capturedPiece.color === 'red')
                 this.redPieces--;
-            } else {
+            else
                 this.blackPieces--;
-            }
 
-            // Check for additional jumps
             this.selectedSquare = { row: toRow, col: toCol };
             const additionalJumps = this.getValidMoves(toRow, toCol).filter(move => move.isJump);
 
             if (additionalJumps.length > 0) {
                 this.jumpingPiece = piece;
                 this.validMoves = additionalJumps;
-                if (this.currentPlayer === 'red') {
+                if (this.currentPlayer === 'red')
                     this.highlightSquares();
-                }
+
                 this.renderBoard();
                 this.updateUI();
 
-                // If it's AI's turn and has more jumps, continue AI turn
-                if (this.currentPlayer === 'black') {
+                if (this.currentPlayer === 'black')
                     setTimeout(() => this.makeAIMove(), 1000);
-                }
-                return; // Don't switch turns yet
+
+                return;
             } else {
                 this.jumpingPiece = null;
             }
         }
 
-        // Check for king promotion
-        if ((piece.color === 'red' && toRow === 0) || (piece.color === 'black' && toRow === 7)) {
+        if ((piece.color === 'red' && toRow === 0) || (piece.color === 'black' && toRow === 7))
             piece.king = true;
-        }
 
         this.deselectPiece();
         this.switchTurns();
@@ -252,10 +221,8 @@ class CheckersGame {
         this.jumpingPiece = null;
         this.isAITurn = this.currentPlayer === 'black';
 
-        // Trigger AI move if it's AI's turn
-        if (this.isAITurn) {
+        if (this.isAITurn)
             setTimeout(() => this.makeAIMove(), 1000);
-        }
     }
 
     updateUI() {
@@ -274,7 +241,6 @@ class CheckersGame {
         } else if (this.blackPieces === 0) {
             this.gameOver('Red');
         } else {
-            // Check if current player has any valid moves
             let hasValidMoves = false;
             for (let row = 0; row < 8 && !hasValidMoves; row++) {
                 for (let col = 0; col < 8 && !hasValidMoves; col++) {
@@ -322,23 +288,20 @@ class CheckersGame {
         document.getElementById('game-over').classList.add('hidden');
     }
 
-    // AI Methods
     makeAIMove() {
         if (this.currentPlayer !== 'black' || this.aiThinking) return;
 
         this.aiThinking = true;
         this.updateUI();
 
-        // Use alpha-beta pruning to find the best move
         setTimeout(() => {
-            const bestMove = this.alphaBetaSearch(4); // Depth of 4
+            const bestMove = this.alphaBetaSearch(4);
 
             this.aiThinking = false;
 
             if (bestMove) {
                 this.makeMove(bestMove.fromRow, bestMove.fromCol, bestMove.toRow, bestMove.toCol);
             } else {
-                // No moves available, player wins
                 this.gameOver('Red');
             }
         }, 500 + Math.random() * 1000);
@@ -350,7 +313,6 @@ class CheckersGame {
     }
 
     alphaBeta(depth, alpha, beta, maximizingPlayer) {
-        // Terminal node - depth reached or game over
         if (depth === 0 || this.isGameOver()) {
             return {
                 score: this.evaluateBoard(),
@@ -362,7 +324,6 @@ class CheckersGame {
         const moves = this.getAllPossibleMoves(color);
 
         if (moves.length === 0) {
-            // No moves available
             return {
                 score: maximizingPlayer ? -1000 : 1000,
                 move: null
@@ -375,14 +336,11 @@ class CheckersGame {
             let maxScore = -Infinity;
 
             for (const move of moves) {
-                // Make the move
                 const boardState = this.makeTemporaryMove(move);
 
-                // Recursively evaluate
                 const result = this.alphaBeta(depth - 1, alpha, beta, false);
                 const score = result.score;
 
-                // Undo the move
                 this.undoTemporaryMove(boardState);
 
                 if (score > maxScore) {
@@ -391,9 +349,7 @@ class CheckersGame {
                 }
 
                 alpha = Math.max(alpha, score);
-                if (beta <= alpha) {
-                    break; // Beta cutoff
-                }
+                if (beta <= alpha) break;
             }
 
             return { score: maxScore, move: bestMove };
@@ -401,14 +357,11 @@ class CheckersGame {
             let minScore = Infinity;
 
             for (const move of moves) {
-                // Make the move
                 const boardState = this.makeTemporaryMove(move);
 
-                // Recursively evaluate
                 const result = this.alphaBeta(depth - 1, alpha, beta, true);
                 const score = result.score;
 
-                // Undo the move
                 this.undoTemporaryMove(boardState);
 
                 if (score < minScore) {
@@ -417,9 +370,7 @@ class CheckersGame {
                 }
 
                 beta = Math.min(beta, score);
-                if (beta <= alpha) {
-                    break; // Alpha cutoff
-                }
+                if (beta <= alpha) break;
             }
 
             return { score: minScore, move: bestMove };
@@ -429,7 +380,6 @@ class CheckersGame {
     evaluateBoard() {
         let score = 0;
 
-        // Count pieces and their values
         let redPieces = 0, blackPieces = 0;
         let redKings = 0, blackKings = 0;
 
@@ -441,20 +391,18 @@ class CheckersGame {
                         redPieces++;
                         if (piece.king) {
                             redKings++;
-                            score -= 5; // King is worth 5 points
+                            score -= 5; // king = 5 points
                         } else {
-                            score -= 1; // Regular piece is worth 1 point
-                            // Bonus for pieces closer to promotion
-                            score -= (7 - row) * 0.1;
+                            score -= 1; // regular = 1 point
+                            score -= (7 - row) * 0.1; // pieces closer to promotions
                         }
                     } else {
                         blackPieces++;
                         if (piece.king) {
                             blackKings++;
-                            score += 5; // King is worth 5 points
+                            score += 5;
                         } else {
-                            score += 1; // Regular piece is worth 1 point
-                            // Bonus for pieces closer to promotion
+                            score += 1;
                             score += row * 0.1;
                         }
                     }
@@ -462,13 +410,10 @@ class CheckersGame {
             }
         }
 
-        // Mobility bonus - having more moves is better
         const blackMoves = this.getAllPossibleMoves('black').length;
         const redMoves = this.getAllPossibleMoves('red').length;
-        score += (blackMoves - redMoves) * 0.1;
-
-        // Center control bonus
-        score += this.getCenterControlScore();
+        score += (blackMoves - redMoves) * 0.1; // having more moves is better
+        score += this.getCenterControlScore(); // center control
 
         return score;
     }
@@ -485,11 +430,10 @@ class CheckersGame {
         centerSquares.forEach(([row, col]) => {
             const piece = this.board[row][col];
             if (piece) {
-                if (piece.color === 'black') {
+                if (piece.color === 'black')
                     score += 0.2;
-                } else {
+                else
                     score -= 0.2;
-                }
             }
         });
 
@@ -497,7 +441,6 @@ class CheckersGame {
     }
 
     makeTemporaryMove(move) {
-        // Save current state
         const boardState = {
             board: this.board.map(row => row.map(cell => cell ? { ...cell } : null)),
             redPieces: this.redPieces,
@@ -508,11 +451,9 @@ class CheckersGame {
         const piece = this.board[move.fromRow][move.fromCol];
         const isJump = Math.abs(move.toRow - move.fromRow) === 2;
 
-        // Move piece
         this.board[move.toRow][move.toCol] = piece;
         this.board[move.fromRow][move.fromCol] = null;
 
-        // Handle jump
         if (isJump) {
             const midRow = move.fromRow + (move.toRow - move.fromRow) / 2;
             const midCol = move.fromCol + (move.toCol - move.fromCol) / 2;
@@ -520,21 +461,16 @@ class CheckersGame {
 
             this.board[midRow][midCol] = null;
 
-            if (capturedPiece.color === 'red') {
+            if (capturedPiece.color === 'red')
                 this.redPieces--;
-            } else {
+            else
                 this.blackPieces--;
-            }
         }
 
-        // Check for king promotion
-        if ((piece.color === 'red' && move.toRow === 0) || (piece.color === 'black' && move.toRow === 7)) {
+        if ((piece.color === 'red' && move.toRow === 0) || (piece.color === 'black' && move.toRow === 7))
             piece.king = true;
-        }
 
-        // Switch players
         this.currentPlayer = this.currentPlayer === 'red' ? 'black' : 'red';
-
         return boardState;
     }
 
@@ -576,12 +512,10 @@ class CheckersGame {
     }
 }
 
-// Global function for the game over dialog
 function newGame() {
     game.newGame();
 }
 
-// Initialize game when page loads
 let game;
 window.addEventListener('load', () => {
     game = new CheckersGame();
