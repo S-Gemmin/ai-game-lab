@@ -1,13 +1,26 @@
+# AI Game Projects
+
+A minimalist collection of classic games powered by simple AI logic, all playable in the browser. Each game is self-contained and designed to be fast, intuitive, and fun.
+
+## Games Included
+
+| Game     | Description                    |
+|----------|--------------------------------|
+| Checkers | Basic checkers with AI moves   |
+| RPS      | Rock Paper Scissors simulator  |
+| Stones   | Nim-style stone game           |
+| Wordle   | Word guessing game             |
+
+## Project Structure
+
+```
 ai-game-projects/
-├── index.html                 # Main homepage (the redesigned one)
-├── README.md                 # Project documentation
+├── index.html
+├── documentation.pdf
+├── README.md
 ├── assets/
-│   ├── css/
-│   │   └── global.css        # Shared styles across all games
-│   ├── js/
-│   │   └── utils.js          # Shared utility functions
-│   └── images/
-│       └── favicon.ico       # Site favicon
+│   └── global.css
+│   └── icon.png
 ├── games/
 │   ├── checkers/
 │   │   ├── checkers.html
@@ -18,13 +31,15 @@ ai-game-projects/
 │   │   ├── rps.js
 │   │   └── rps.css
 │   ├── stones/
-│   │   ├── stones.html       # Your existing stone game
-│   │   ├── main.js           # Your existing JS
-│   │   └── styles.css        # Your existing CSS
+│   │   ├── stones.html
+│   │   ├── main.js
+│   │   └── styles.css
 │   └── wordle/
 │       ├── wordle.html
 │       ├── wordle.js
 │       └── wordle.css
-└── docs/
-    ├── algorithms.md         # Documentation of AI algorithms used
-    └── game-rules.md        # Rules for each game
+```
+
+## License
+
+MIT — feel free to use, modify, and share.
