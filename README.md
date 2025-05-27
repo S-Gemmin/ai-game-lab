@@ -16,6 +16,7 @@ A minimalist collection of classic games powered by simple AI logic, all playabl
 ```
 ai-game-projects/
 ├── index.html
+├── styles.html
 ├── documentation.pdf
 ├── README.md
 ├── assets/
